@@ -2,6 +2,10 @@
 FROM gradle:8.7-jdk21 AS build
 WORKDIR /app
 COPY . .
+
+# ---> THE FIX: Make the Gradle wrapper executable for Linux <---
+RUN chmod +x ./gradlew
+
 # Run the bootWar task to generate the .war file (skipping tests for speed)
 RUN ./gradlew clean bootWar -x test
 
