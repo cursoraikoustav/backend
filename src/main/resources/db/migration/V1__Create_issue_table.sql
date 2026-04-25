@@ -1,0 +1,6 @@
+CREATE TABLE issue (
+    id VARCHAR(255) NOT NULL PRIMARY KEY,
+    title VARCHAR(255) DEFAULT NULL,
+    description TEXT DEFAULT NULL,
+    status VARCHAR(50) DEFAULT NULL
+);

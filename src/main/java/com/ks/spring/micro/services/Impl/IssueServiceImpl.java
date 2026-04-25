@@ -23,7 +23,7 @@ public class IssueServiceImpl implements IssueService {
 
     @Transactional
     @Override
-    public final IssueDto createIssue(IssueDto issueDto) {
+    public IssueDto createIssue(IssueDto issueDto) {
         // 1. Convert DTO to Entity
         Issue issue = converter.convert(issueDto, Issue.class);
 
