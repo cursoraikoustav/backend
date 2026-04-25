@@ -1,11 +1,13 @@
 package com.ks.spring.micro.controller;
 
+import com.ks.spring.micro.Dto.base.IssueDto;
 import com.ks.spring.micro.Dto.request.CreateIssueRequestDto;
 import com.ks.spring.micro.Utill.Converter;
 import com.ks.spring.micro.services.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,22 +30,22 @@ public class IssueController {
 
 
     @GetMapping("/list")
-    public List<String> listIssues() {
+    public List<IssueDto> listIssues() {
         return issueService.getAll();
     }
 
     @PostMapping("/create")
-    public String createIssue(@RequestBody CreateIssueRequestDto createIssueRequestDto) {
-        return issueService.create(createIssueRequestDto.issueDto);
+    public IssueDto createIssue(@RequestBody CreateIssueRequestDto createIssueRequestDto) {
+        return issueService.createIssue(createIssueRequestDto.issueDto);
     }
 
     @GetMapping("/get/{id}")
-    public String getIssue(@RequestParam String id) {
-        return issueService.get(id);
+    public IssueDto getIssue(@PathVariable String id) {
+        return issueService.getIssue(id);
     }
 
     @PostMapping("/delete/{id}")
-    public Boolean delete(@RequestParam String id) {
+    public Boolean delete(@PathVariable String id) {
         return issueService.deleteById(id);
     }
 
