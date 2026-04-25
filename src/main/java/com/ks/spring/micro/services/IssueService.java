@@ -7,18 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface IssueService {
-    String create(IssueDto issueDto);
-
-    @Transactional
     IssueDto createIssue(IssueDto issueDto);
-
-    List<String> getAll();
-
-    List<Issue> allIssues();
-
-    String get(String id);
-
-    Issue getIssue(String id);
-
+    List<IssueDto> getAll();
+    IssueDto getIssue(String id);
     Boolean deleteById(String id);
 }

@@ -21,11 +21,6 @@ public class IssueServiceImpl implements IssueService {
         this.converter = converter;
     }
 
-    @Override
-    public String create(IssueDto issueDto) {
-        return converter.convertToJson(createIssue(issueDto));
-    }
-
     @Transactional
     @Override
     public final IssueDto createIssue(IssueDto issueDto) {
@@ -41,24 +36,14 @@ public class IssueServiceImpl implements IssueService {
     }
 
     @Override
-    public List<String> getAll() {
-        return allIssues().stream().map(it->converter.convertToJson(converter.convert(it, IssueDto.class)))
+    public List<IssueDto> getAll() {
+        return issueDao.findAll().stream().map(it->converter.convert(it, IssueDto.class))
                 .toList();
     }
 
     @Override
-    public List<Issue> allIssues() {
-        return issueDao.findAll();
-    }
-
-    @Override
-    public String get(String id) {
-        return converter.convertToJson(converter.convert(getIssue(id),IssueDto.class));
-    }
-
-    @Override
-    public Issue getIssue(String id) {
-        return issueDao.findById(id).orElse(null);
+    public IssueDto getIssue(String id) {
+        return converter.convert(issueDao.findById(id).orElse(null),IssueDto.class);
     }
 
     @Override

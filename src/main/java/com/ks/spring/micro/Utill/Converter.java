@@ -2,7 +2,7 @@ package com.ks.spring.micro.Utill;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-import tools.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
 public class Converter {
